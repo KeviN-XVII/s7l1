@@ -32,7 +32,11 @@ public class DipendentiService {
         this.cloudinaryUploader = cloudinaryUploader;
 
     }
-
+//     RICERCA SE DIPENDENTE CON EMAIL E' GIA ESISTENTE
+// DA USARE IN AUTHSERVICE
+    public Dipendente findByEmail (String email) {
+        return this.dipendentiRepository.findByEmail(email).orElseThrow(()-> new NotFoundException("L'utente con email " + email + " non è stato trovato!"));
+    }
 
     // SALVA DIPENDENTE
 
@@ -114,18 +118,4 @@ public class DipendentiService {
             throw new RuntimeException(e);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
