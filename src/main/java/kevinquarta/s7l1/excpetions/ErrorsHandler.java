@@ -1,7 +1,7 @@
 package kevinquarta.s7l1.excpetions;
 
-import kevinquarta.progettos6l5.payloads.ErrorsDTO;
-import kevinquarta.progettos6l5.payloads.ErrorsWithListDTO;
+import kevinquarta.s7l1.payloads.ErrorsDTO;
+import kevinquarta.s7l1.payloads.ErrorsWithListDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

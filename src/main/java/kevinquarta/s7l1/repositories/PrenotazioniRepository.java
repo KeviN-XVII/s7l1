@@ -1,7 +1,7 @@
 package kevinquarta.s7l1.repositories;
 
 
-import kevinquarta.progettos6l5.entities.Prenotazione;
+import kevinquarta.s7l1.entities.Prenotazione;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

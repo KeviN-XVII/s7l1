@@ -3,11 +3,11 @@ package kevinquarta.s7l1.services;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import kevinquarta.progettos6l5.entities.Dipendente;
-import kevinquarta.progettos6l5.excpetions.BadRequestException;
-import kevinquarta.progettos6l5.excpetions.NotFoundException;
-import kevinquarta.progettos6l5.payloads.DipendenteDTO;
-import kevinquarta.progettos6l5.repositories.DipendentiRepository;
+import kevinquarta.s7l1.entities.Dipendente;
+import kevinquarta.s7l1.excpetions.BadRequestException;
+import kevinquarta.s7l1.excpetions.NotFoundException;
+import kevinquarta.s7l1.payloads.DipendenteDTO;
+import kevinquarta.s7l1.repositories.DipendentiRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

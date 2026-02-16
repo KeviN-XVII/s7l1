@@ -1,11 +1,11 @@
 package kevinquarta.s7l1.services;
 
 
-import kevinquarta.progettos6l5.entities.Viaggio;
-import kevinquarta.progettos6l5.excpetions.NotFoundException;
-import kevinquarta.progettos6l5.payloads.ViaggioDTO;
-import kevinquarta.progettos6l5.payloads.ViaggioStatoDTO;
-import kevinquarta.progettos6l5.repositories.ViaggioRepository;
+import kevinquarta.s7l1.entities.Viaggio;
+import kevinquarta.s7l1.excpetions.NotFoundException;
+import kevinquarta.s7l1.payloads.ViaggioDTO;
+import kevinquarta.s7l1.payloads.ViaggioStatoDTO;
+import kevinquarta.s7l1.repositories.ViaggioRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

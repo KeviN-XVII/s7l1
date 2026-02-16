@@ -1,7 +1,7 @@
 package kevinquarta.s7l1.repositories;
 
 
-import kevinquarta.progettos6l5.entities.Dipendente;
+import kevinquarta.s7l1.entities.Dipendente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

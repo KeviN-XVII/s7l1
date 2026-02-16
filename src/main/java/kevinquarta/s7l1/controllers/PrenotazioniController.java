@@ -1,10 +1,10 @@
 package kevinquarta.s7l1.controllers;
 
 
-import kevinquarta.progettos6l5.entities.Prenotazione;
-import kevinquarta.progettos6l5.excpetions.ValidationException;
-import kevinquarta.progettos6l5.payloads.PrenotazioneDTO;
-import kevinquarta.progettos6l5.services.PrenotazioniService;
+import kevinquarta.s7l1.entities.Prenotazione;
+import kevinquarta.s7l1.excpetions.ValidationException;
+import kevinquarta.s7l1.payloads.PrenotazioneDTO;
+import kevinquarta.s7l1.services.PrenotazioniService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;

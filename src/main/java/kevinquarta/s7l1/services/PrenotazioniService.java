@@ -1,15 +1,15 @@
 package kevinquarta.s7l1.services;
 
 
-import kevinquarta.progettos6l5.entities.Dipendente;
-import kevinquarta.progettos6l5.entities.Prenotazione;
-import kevinquarta.progettos6l5.entities.Viaggio;
-import kevinquarta.progettos6l5.excpetions.BadRequestException;
-import kevinquarta.progettos6l5.excpetions.NotFoundException;
-import kevinquarta.progettos6l5.payloads.PrenotazioneDTO;
-import kevinquarta.progettos6l5.repositories.DipendentiRepository;
-import kevinquarta.progettos6l5.repositories.PrenotazioniRepository;
-import kevinquarta.progettos6l5.repositories.ViaggioRepository;
+import kevinquarta.s7l1.entities.Dipendente;
+import kevinquarta.s7l1.entities.Prenotazione;
+import kevinquarta.s7l1.entities.Viaggio;
+import kevinquarta.s7l1.excpetions.BadRequestException;
+import kevinquarta.s7l1.excpetions.NotFoundException;
+import kevinquarta.s7l1.payloads.PrenotazioneDTO;
+import kevinquarta.s7l1.repositories.DipendentiRepository;
+import kevinquarta.s7l1.repositories.PrenotazioniRepository;
+import kevinquarta.s7l1.repositories.ViaggioRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
