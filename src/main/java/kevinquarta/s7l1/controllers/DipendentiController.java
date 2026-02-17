@@ -8,6 +8,8 @@ import kevinquarta.s7l1.services.DipendentiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +32,7 @@ public class DipendentiController {
 
 //  GET /dipendenti ritorna lista di dipendenti
      @GetMapping
+     @PreAuthorize("hasAnyAuthority('SUPERADMIN', 'ADMIN')") // Solo admin o superadmin possono visualizzare la lista degli utenti
      public Page<Dipendente> findAll(@RequestParam(defaultValue = "0")int page,
                           @RequestParam(defaultValue = "10")int size,
                           @RequestParam(defaultValue = "nome")String orderBy,
@@ -45,6 +48,7 @@ public class DipendentiController {
 
 //     PUT /dipendenti/123 modifica lo specifico autore
     @PutMapping("/{dipendenteId}")
+    @PreAuthorize("hasAnyAuthority('SUPERADMIN', 'ADMIN')")
     public Dipendente updateDipendente(@PathVariable long dipendenteId, @RequestBody @Validated DipendenteDTO payload,BindingResult validationResult) {
         if(validationResult.hasErrors()){
             List<String> errorsList = validationResult.getFieldErrors()
@@ -56,9 +60,25 @@ public class DipendentiController {
             return this.dipendentiService.findByIdAndUpdate(dipendenteId, payload);
         }
     }
+    // TODO: Utilizzare @AuthenticationPrincipal
+    // PUT / dell'utente autenticato,utilizzando @AuthenticationPrincipal
+
+    @PutMapping("/me")
+    public Dipendente updateProfile(@AuthenticationPrincipal Dipendente currentAuthenticatedDipendente, @RequestBody @Validated DipendenteDTO payload, BindingResult validationResult) {
+        if(validationResult.hasErrors()){
+            List<String> errorsList = validationResult.getFieldErrors()
+                    .stream()
+                    .map(fieldError -> fieldError.getDefaultMessage())
+                    .toList();
+            throw new ValidationException(errorsList);
+        } else {
+            return this.dipendentiService.findByIdAndUpdate(currentAuthenticatedDipendente.getId(), payload);
+            // TODO : utilizziamo .getId()
+        }
 
 //     DELETE /dipendenti/123 elimina un dipendente specifico
     @DeleteMapping("/{dipendenteId}")
+    @PreAuthorize("hasAnyAuthority('SUPERADMIN', 'ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteDipendente(@PathVariable long dipendenteId) {
         this.dipendentiService.findByIdAndDelete(dipendenteId);

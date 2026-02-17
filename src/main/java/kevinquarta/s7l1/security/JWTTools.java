@@ -35,7 +35,14 @@ public class JWTTools {
         } catch (Exception ex) {
             throw new UnauthroizedException("Problemi col token!");
         }
-
     }
 
+    public long extractIdFromToken (String token){
+       return Long.parseLong(Jwts.parser()
+                .verifyWith(Keys.hmacShaKeyFor(secret.getBytes()))
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .getSubject());
+    }
 }
