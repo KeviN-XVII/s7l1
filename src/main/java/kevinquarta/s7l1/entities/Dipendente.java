@@ -1,6 +1,7 @@
 package kevinquarta.s7l1.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +18,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString
+// TODO: JSONIGNORE O JSONIGNOREPROPERTIES PER TOGLIERE TUTTO QUELLO CHE NON VOGLIAMO LEGGERE NEL JSON
+@JsonIgnoreProperties({"password", "accountNonExpired", "accountNonLocked", "authorities", "credentialsNonExpired", "enabled"})
 public class Dipendente implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

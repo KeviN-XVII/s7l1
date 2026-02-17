@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,11 +26,13 @@ import java.util.Map;
 public class DipendentiService {
     private final DipendentiRepository dipendentiRepository;
     private final Cloudinary cloudinaryUploader;
+    private final PasswordEncoder bcrypt;
 
     @Autowired
-    public DipendentiService(DipendentiRepository dipendentiRepository, Cloudinary cloudinaryUploader) {
+    public DipendentiService(DipendentiRepository dipendentiRepository, Cloudinary cloudinaryUploader, PasswordEncoder bcrypt) {
         this.dipendentiRepository = dipendentiRepository;
         this.cloudinaryUploader = cloudinaryUploader;
+        this.bcrypt = bcrypt;
 
     }
 //     RICERCA SE DIPENDENTE CON EMAIL E' GIA ESISTENTE
@@ -45,7 +48,10 @@ public class DipendentiService {
         this.dipendentiRepository.findByEmail(payload.email()).ifPresent(dipendente -> {
             throw new BadRequestException("L'email "+ dipendente.getEmail() + " è già registrata!");});
 //        NUOVO USER
-        Dipendente newDipendente = new Dipendente(payload.nome(), payload.cognome(), payload.email(),payload.password());
+
+        // TODO:BCRYPT.ENCODE
+
+        Dipendente newDipendente = new Dipendente(payload.nome(), payload.cognome(), payload.email(),bcrypt.encode(payload.password()));
         newDipendente.setAvatar("https://ui-avatars.com/api/?name="+payload.nome()+"+"+payload.cognome());
 //        SALVO
         Dipendente savedDipendente = dipendentiRepository.save(newDipendente);

@@ -65,7 +65,7 @@ public class DipendentiController {
 
     @PutMapping("/me")
     public Dipendente updateProfile(@AuthenticationPrincipal Dipendente currentAuthenticatedDipendente, @RequestBody @Validated DipendenteDTO payload, BindingResult validationResult) {
-        if(validationResult.hasErrors()){
+        if (validationResult.hasErrors()) {
             List<String> errorsList = validationResult.getFieldErrors()
                     .stream()
                     .map(fieldError -> fieldError.getDefaultMessage())
@@ -75,6 +75,7 @@ public class DipendentiController {
             return this.dipendentiService.findByIdAndUpdate(currentAuthenticatedDipendente.getId(), payload);
             // TODO : utilizziamo .getId()
         }
+    }
 
 //     DELETE /dipendenti/123 elimina un dipendente specifico
     @DeleteMapping("/{dipendenteId}")

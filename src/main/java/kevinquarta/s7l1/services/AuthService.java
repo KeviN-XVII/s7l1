@@ -6,6 +6,7 @@ import kevinquarta.s7l1.payloads.DipendenteDTO;
 import kevinquarta.s7l1.payloads.LoginDTO;
 import kevinquarta.s7l1.security.JWTTools;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,11 +15,13 @@ public class AuthService {
     private final DipendentiService dipendentiService;
 //        porto JWTTOLS
     private final JWTTools jwtTools;
+    private final PasswordEncoder bcrypt;
 
     @Autowired
-    public AuthService(DipendentiService dipendentiService, JWTTools jwtTools) {
+    public AuthService(DipendentiService dipendentiService, JWTTools jwtTools,PasswordEncoder bcrypt) {
         this.dipendentiService = dipendentiService;
         this.jwtTools = jwtTools;
+        this.bcrypt = bcrypt;
     }
 
     public String CheckCredentialsAndGenerateToken(LoginDTO body) {
@@ -26,7 +29,9 @@ public class AuthService {
         Dipendente found = this.dipendentiService.findByEmail(body.email());
 
 
-        if(found.getPassword().equals(body.password())) {
+        // TODO: bcrypt.matches(body.password(), found.getPassword()) IMPORTANTE FARE PRIMA BODY
+
+        if(bcrypt.matches(body.password(), found.getPassword())) {
             //2.1 se credenziali ok
         //2. genero il token
             String accessToken= jwtTools.generateToken(found);
