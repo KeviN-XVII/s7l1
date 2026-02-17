@@ -45,7 +45,7 @@ public class DipendentiService {
         this.dipendentiRepository.findByEmail(payload.email()).ifPresent(dipendente -> {
             throw new BadRequestException("L'email "+ dipendente.getEmail() + " è già registrata!");});
 //        NUOVO USER
-        Dipendente newDipendente = new Dipendente(payload.nome(), payload.cognome(), payload.email());
+        Dipendente newDipendente = new Dipendente(payload.nome(), payload.cognome(), payload.email(),payload.password());
         newDipendente.setAvatar("https://ui-avatars.com/api/?name="+payload.nome()+"+"+payload.cognome());
 //        SALVO
         Dipendente savedDipendente = dipendentiRepository.save(newDipendente);

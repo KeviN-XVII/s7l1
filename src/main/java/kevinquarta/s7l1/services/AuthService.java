@@ -26,7 +26,7 @@ public class AuthService {
         Dipendente found = this.dipendentiService.findByEmail(body.email());
 
 
-        if(found.getEmail().equals(body.email())) {
+        if(found.getPassword().equals(body.password())) {
             //2.1 se credenziali ok
         //2. genero il token
             String accessToken= jwtTools.generateToken(found);

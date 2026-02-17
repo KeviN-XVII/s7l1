@@ -26,20 +26,7 @@ public class DipendentiController {
         this.dipendentiService = dipendentiService;
     }
 
-//    POST /dipendenti crea nuovo dipendente
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Dipendente saveDipendente(@RequestBody @Validated DipendenteDTO payload, BindingResult validationResult){
-        if(validationResult.hasErrors()){
-            List<String> errorsList = validationResult.getFieldErrors()
-                    .stream()
-                    .map(fieldError -> fieldError.getDefaultMessage())
-                    .toList();
-            throw new ValidationException(errorsList);
-        } else {
-            return this.dipendentiService.saveDipendente(payload);
-        }
-    }
+
 
 //  GET /dipendenti ritorna lista di dipendenti
      @GetMapping

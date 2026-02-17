@@ -3,6 +3,7 @@ package kevinquarta.s7l1.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -10,6 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity // sarà una classe apposita per Spring Security
+@EnableMethodSecurity // Annotazione OBBLIGATORIA se vogliamo usare le varie @PreAuthorize sugli endpoint
 public class SecutiryConfig {
 
     @Bean
